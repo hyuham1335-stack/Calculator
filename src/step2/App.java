@@ -78,9 +78,9 @@ public class App {
             }
 
             int calculateResult = calculator.calculate(a, b, operator);
-            calculator.operateResult.add(calculateResult);
+            calculator.setOperateResult(calculateResult);
 
-            System.out.println(calculator.operateResult);
+            System.out.println(calculator.getOperateResult());
 
             System.out.println("계산을 종료할려면 exit을 입력해 주세요");
             String exitCheck = sc.nextLine();
