@@ -80,7 +80,13 @@ public class App {
             int calculateResult = calculator.calculate(a, b, operator);
             calculator.setOperateResult(calculateResult);
 
-            System.out.println(calculator.getOperateResult());
+            System.out.println("연산 결과 List: " + calculator.getOperateResult());
+
+            System.out.println("첫번째 연산 결과 데이터를 삭제하려면 remove를 입력해 주세요");
+            String removeCheck = sc.nextLine();
+            if(removeCheck.equals("remove")){
+                calculator.removeOperateResult();
+            }
 
             System.out.println("계산을 종료할려면 exit을 입력해 주세요");
             String exitCheck = sc.nextLine();

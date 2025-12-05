@@ -8,7 +8,7 @@ public class Calculator {
     //속성
 
     //calculate 연산 결과를 저장하는 리스트
-    private List operateResult = new ArrayList();
+    private List<Integer> operateResult = new ArrayList<>();
 
 
     //생성자
@@ -46,5 +46,9 @@ public class Calculator {
 
     public void setOperateResult(int calculeResult) {
         operateResult.add(calculeResult);
+    }
+
+    public void removeOperateResult() {
+        operateResult.remove(0);
     }
 }
