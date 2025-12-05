@@ -3,7 +3,7 @@ package step1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Calculator {
+public class App {
     public static void main(String[] args) {
 
         boolean loopCheck = true;
