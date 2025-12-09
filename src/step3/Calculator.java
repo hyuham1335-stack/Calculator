@@ -4,48 +4,50 @@ package step3;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculator {
+public class Calculator<T extends Number> {
 
     //속성
+    private T num1;
+    private T num2;
 
     //calculate 연산 결과를 저장하는 리스트
-    private List<Integer> operateResult = new ArrayList<>();
+    private static List<Number> operateResult = new ArrayList<>();
 
 
     //생성자
-
+    Calculator(T num1, T num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
 
     //기능
 
-    //양의 정수 2개와 연산 기호를 매개변수로 전달받아 연산 결과 반환
-    public int calculate(int num1, int num2, OperatorType operator) {
-
-        int result = 0;
+    //숫자 2개와 연산 기호를 매개변수로 전달받아 연산 결과 반환
+    public double calculate(OperatorType operator) {
 
         switch (operator) {
             case SUM:
-                result = num1 + num2;
-                break;
+                return num1.doubleValue() + num2.doubleValue();
 
             case SUB:
-                result = num1 - num2;
-                break;
+                return num1.doubleValue() - num2.doubleValue();
 
             case MUL:
-                result = num1 * num2;
-                break;
+                return num1.doubleValue() * num2.doubleValue();
 
             case DIV:
-                result = num1 / num2;
+                return num1.doubleValue() / num2.doubleValue();
+
+            default:
+                return 0;
         }
-        return result;
     }
 
     public List getOperateResult() {
         return operateResult;
     }
 
-    public void setOperateResult(int calculeResult) {
+    public void setOperateResult(double calculeResult) {
         operateResult.add(calculeResult);
     }
 
