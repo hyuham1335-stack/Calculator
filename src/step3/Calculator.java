@@ -3,6 +3,7 @@ package step3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator<T extends Number> {
 
@@ -43,15 +44,39 @@ public class Calculator<T extends Number> {
         }
     }
 
-    public List getOperateResult() {
-        return operateResult;
+    // 계산 결과 리스트 출력
+    public void getOperateResult() {
+
+        System.out.println("연산 결과 List: " + operateResult);
     }
 
-    public void setOperateResult(double calculeResult) {
+    // 전달 받은 값 이상의 데이터를 계산 결과 리스트에서 출력
+    public void showOperateResult(double minNum) {
+        List<Number> list = operateResult.stream()
+                        .filter(num -> num.doubleValue() >= minNum)
+                        .collect(Collectors.toList());
+
+        if (list.isEmpty()) {
+            System.out.println("리스트에 조건에 맞는 데이터가 존재하지 않습니다.");
+        } else {
+            System.out.println("검색 결과 List : " + list);
+        }
+    }
+
+    // 계산 결과를 리스트에 추가
+    public void addOperateResult(double calculeResult) {
         operateResult.add(calculeResult);
     }
 
+    // 계산 결과 리스트의 맨 처음 값 제거
     public void removeOperateResult() {
-        operateResult.remove(0);
+
+        if(operateResult.isEmpty()){
+            System.out.println("리스트에 데이터가 존재하지 않습니다.");
+        } else {
+            System.out.println("리스트에서 " + operateResult.get(0) + "삭제");
+            operateResult.remove(0);
+        }
     }
+
 }

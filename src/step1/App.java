@@ -7,9 +7,9 @@ public class App {
     public static void main(String[] args) {
 
         boolean loopCheck = true;
-
+        Scanner sc = new Scanner(System.in);
         while(loopCheck){
-            Scanner sc = new Scanner(System.in);
+
             int a, b;
             char operator;
             boolean operateCheck = true;
@@ -85,5 +85,6 @@ public class App {
                 loopCheck = false;
             }
         }
+        sc.close();
     }
 }

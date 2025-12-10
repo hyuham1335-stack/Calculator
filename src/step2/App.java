@@ -8,9 +8,10 @@ public class App {
 
         boolean loopCheck = true;
         Calculator calculator = new Calculator();
+        Scanner sc = new Scanner(System.in);
 
         while(loopCheck){
-            Scanner sc = new Scanner(System.in);
+
             int a, b;
             char operator = '\0';
             boolean operateCheck = true;
@@ -94,6 +95,6 @@ public class App {
                 loopCheck = false;
             }
         }
-
+        sc.close();
     }
 }

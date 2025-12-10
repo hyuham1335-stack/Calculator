@@ -7,9 +7,10 @@ public class App {
     public static void main(String[] args) {
 
         boolean loopCheck = true;
+        Scanner sc = new Scanner(System.in);
 
         while(loopCheck){
-            Scanner sc = new Scanner(System.in);
+
             double a, b;
             char operator = '\0';
             boolean operateCheck = true;
@@ -76,25 +77,77 @@ public class App {
             }
 
             // Calculator 객체 생성
-            Calculator calculator = new Calculator(a, b);
+            Calculator<Double> calculator = new Calculator<>(a, b);
 
             double calculateResult = calculator.calculate(operatorType);
-            calculator.setOperateResult(calculateResult);
+            calculator.addOperateResult(calculateResult);
+            calculator.getOperateResult();
 
-            System.out.println("연산 결과 List: " + calculator.getOperateResult());
+            System.out.println("====== 계산 종료 ======");
 
-            System.out.println("첫번째 연산 결과 데이터를 삭제하려면 remove를 입력해 주세요");
-            String removeCheck = sc.nextLine();
-            if(removeCheck.equals("remove")){
-                calculator.removeOperateResult();
-            }
+            boolean operateSelection = true;
 
-            System.out.println("계산을 종료할려면 exit을 입력해 주세요");
-            String exitCheck = sc.nextLine();
-            if (exitCheck.equals("exit")) {
-                loopCheck = false;
+            while (operateSelection) {
+
+                System.out.println("====== 동작 선택 ======");
+
+                System.out.println("1. 연산 결과 데이터 삭제");
+                System.out.println("2. 검색 최솟값 설정 후 검색");
+                System.out.println("3. 계산을 계속 진행");
+                System.out.println("4. 계산을 종료");
+                System.out.print("번호 입력 : ");
+
+                try {
+                    int operateNum = sc.nextInt();
+                    sc.nextLine();
+                    switch (operateNum) {
+                        case 1:
+                            System.out.print("첫번째 연산 결과 데이터를 삭제하려면 remove를 입력해 주세요 : ");
+                            String removeCheck = sc.nextLine();
+                            if(removeCheck.equals("remove")){
+                                calculator.removeOperateResult();
+                            } else {
+                                System.out.println("입력이 잘못되었습니다.");
+                            }
+                            break;
+
+                        case 2:
+                            System.out.print("검색 최솟값 설정을 위한 값을 입력해주세요 : ");
+                            String minString = sc.nextLine();
+
+                            try {
+                                double minNum = Double.parseDouble(minString);
+                                calculator.showOperateResult(minNum);
+                            } catch (NumberFormatException e) {
+                                System.out.println("입력이 잘못되었습니다.");
+                            }
+                            break;
+
+                        case 3:
+                            operateSelection = false;
+                            break;
+
+                        case 4:
+                            System.out.print("계산을 종료할려면 exit을 입력해 주세요 : ");
+                            String exitCheck = sc.nextLine();
+                            if (exitCheck.equals("exit")) {
+                                loopCheck = false;
+                                operateSelection = false;
+                            } else {
+                                System.out.println("입력이 잘못되었습니다.");
+                            }
+                            break;
+
+                        default:
+                            System.out.println("1~4 까지의 정수만 입력 가능합니다.");
+                    }
+                } catch (InputMismatchException e){
+                    System.out.println("1~4 까지의 정수만 입력 가능합니다.");
+                    sc.nextLine();
+                }
             }
         }
 
+        sc.close();
     }
 }
